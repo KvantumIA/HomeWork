@@ -10,37 +10,33 @@
 
 
 Console.Clear();
-System.Console.Write("Введите пятизначное число: ");
+System.Console.Write("Введите целое пятизначное число: ");
 int num = Convert.ToInt32(Console.ReadLine());
-int i = 0;
-while (i<6)
+
+double d = Math.Log10(num);
+double c = Math.Ceiling(d);
+int razryad = Convert.ToInt32(c);
+
+int[] numPalindrom = new int[razryad];
+
+for (int i = 0; i<numPalindrom.Length; i++)
 {
-    if (num%10000)
-        {
-            
-        }
+    numPalindrom[i] = num%10;
+    num = num/10;
 }
-    
 
+int count = 0;
+for (int z = 0; z<numPalindrom.Length; z++)
+{
+    if (numPalindrom[z] == numPalindrom[numPalindrom.Length-1-z])
+        {
+            count++;
+        }
+    else
+        continue;
+}
 
-
-
-
-
-
-
-
-// string[] str = Console.ReadLine().Split(";");
-
-// int[] num1 = new int[str.Length];
-
-// for (int i = 0; i < str.Length; i++)
-// {
-//   num1[i] = Convert.ToInt32(str[i]);
-// }
-
-// System.Console.WriteLine(str.Length);
-
-// int[] num2 = new int[]{1, 2, 3, 4, 5};
-// var n = num2[1];
-// System.Console.WriteLine(n);
+if (count == razryad)
+    System.Console.WriteLine("Это число является палиндромом");
+else
+    System.Console.WriteLine("Не является палиндромом");
