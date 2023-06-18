@@ -29,12 +29,6 @@ void PrintArray(int[,] array)
         }
 }
 
-void PrintArray2(int[] array2)
-{
-    foreach (var item in array2)
-        System.Console.Write($"{item} ");
-}
-
 int[] Sort(int[,] array)
 {
     int[] array2 = new int[array.GetLength(0)*array.GetLength(1)];
