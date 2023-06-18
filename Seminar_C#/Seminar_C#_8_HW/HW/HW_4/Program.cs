@@ -6,21 +6,40 @@
 // 26(1,0,1) 55(1,1,1)
 
 
-void FillArray(int[,] array)
+void FillArray(int[,,] array, int[] RandomOneArray)
 {
+    int count = 0;
     for (int i = 0; i < array.GetLength(0); i++)
         for (int j = 0; j < array.GetLength(1); j++)
-            array[i,j] = new Random().Next(-30,31);
+            for (int z = 0; z < array.GetLength(2); z++)
+                {
+                    array[i,j,z] = RandomOneArray[count];
+                    count ++;
+                }
 }
 
-void PrintArray(int[,] array)
+void RandomArray(int[] RandomOneArray)
+{
+    int num = 0;
+    RandomOneArray[0] = new Random().Next(10,100);
+    for (int i = 0; i < RandomOneArray.Length; i++)
+    {
+        num = new Random().Next(10,100);
+        if (RandomOneArray.Contains(num))
+            i--;
+        else RandomOneArray[i] = num;
+    }
+}
+
+void PrintArray(int[,,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
-        {
         for (int j = 0; j < array.GetLength(1); j++)
-            Console.Write($"{array[i,j],3}    ");
-        System.Console.WriteLine();
-        }
+            for (int z = 0; z < array.GetLength(2); z++)
+            {
+                Console.WriteLine($"{array[i,j,z],3} ({i},{j},{z})");
+            }
+            System.Console.WriteLine();
 }
 
 
@@ -30,6 +49,12 @@ System.Console.Write("Введите количество строк: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 System.Console.Write("Введите количество столбцов: ");
 int cols = Convert.ToInt32(Console.ReadLine());
-int[,] array = new int [rows, cols];
-FillArray(array);
+System.Console.Write("Введите количество столбцов в глубину: ");
+int deep = Convert.ToInt32(Console.ReadLine());
+int[,,] array = new int [rows, cols, deep];
+int[] RandomOneArray = new int[rows*cols*deep];
+
+RandomArray(RandomOneArray);
+
+FillArray(array, RandomOneArray);
 PrintArray(array);
