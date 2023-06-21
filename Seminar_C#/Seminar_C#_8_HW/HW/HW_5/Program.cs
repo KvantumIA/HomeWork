@@ -7,11 +7,63 @@
 
 
 
-void FillArray(int[,] array)
+void FillArray(int[,] array, int rows, int cols)
 {
+    int count = 1;
     for (int i = 0; i < array.GetLength(0); i++)
+    {
         for (int j = 0; j < array.GetLength(1); j++)
-            array[i,j] = new Random().Next(1,31);
+        {
+            if (i == rows - 4 && j <= array.GetLength(1))
+            {
+                array[i,j] = count;
+                count++;
+            }
+            else if (i <= array.GetLength(0) && j == cols - 1)
+            {
+                array[i,j] = count;
+                count++;
+            }
+        }
+    }
+    for (int i = 3; i > rows - 4; i--)
+    {
+        for (int j = 3; j >= cols - 4; j--)
+        {
+            if (i == rows - 1 && j < array.GetLength(1)-1)
+            {
+                array[i,j] = count;
+                count++;
+            }
+            else if (i < array.GetLength(0) && j == cols - 4)
+            {
+                array[i,j] = count;
+                count++;
+            }
+        }
+    }
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (i == rows - 3 && j > cols - 4 && j < cols - 1)
+            {
+                array[i,j] = count;
+                count++;
+            }
+        }
+    }
+    for (int i = 3; i > rows - 4; i--)
+    {
+        for (int j = 3; j >= cols - 4; j--)
+        {
+            if (i == rows - 2 && j > cols - 4 && j < cols - 1)
+            {
+                array[i,j] = count;
+                count++;
+            }
+        }
+    }
 }
 
 void PrintArray(int[,] array)
@@ -19,7 +71,7 @@ void PrintArray(int[,] array)
     for (int i = 0; i < array.GetLength(0); i++)
         {
         for (int j = 0; j < array.GetLength(1); j++)
-            Console.Write($"{array[i,j],3}    ");
+            Console.Write($"{array[i,j],3}  ");
         System.Console.WriteLine();
         }
 }
@@ -27,10 +79,8 @@ void PrintArray(int[,] array)
 
 
 Console.Clear();
-System.Console.Write("Введите количество строк: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-System.Console.Write("Введите количество столбцов: ");
-int cols = Convert.ToInt32(Console.ReadLine());
+int rows = 4;
+int cols = 4;
 int[,] array = new int [rows, cols];
-FillArray(array);
+FillArray(array, rows, cols);
 PrintArray(array);

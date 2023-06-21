@@ -26,13 +26,6 @@ void PrintArray(int[,] array)
         }
 }
 
-void PrintArray2(int[]SumRows)
-{
-    foreach (var item in SumRows)
-        System.Console.Write($"{item} ");
-    System.Console.WriteLine();
-}
-
 int[] SumRowsArray(int[,] array, int rows)
 {
     int [] summaRows = new int[rows];
@@ -73,5 +66,5 @@ int[,] array = new int [rows, cols];
 FillArray(array);
 PrintArray(array);
 int[] SumRows = SumRowsArray(array, rows);
-PrintArray2(SumRows);
+System.Console.WriteLine();
 System.Console.WriteLine($"Строка с наименьшей суммой элементов это - строка {MinRows(SumRows)}");

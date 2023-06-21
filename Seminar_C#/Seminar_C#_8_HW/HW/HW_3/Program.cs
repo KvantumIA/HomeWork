@@ -30,40 +30,19 @@ int[,] ProductMatrix(int[,] array, int[,] array2, int rows, int cols)
     int[,] Matrix = new int[rows, cols];
     
     for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
         {
-            if (j == 0 && i == 0)
+            for (int j = 0; j < array.GetLength(1); j++)
             {
-                Matrix[i,j] = array[i,j]*array2[i,j] + array[i,j+1]*array2[i+1,j];
-                // Matrix[0,0] = array[0,0]*array2[0,0] + array[0,1]*array2[1,0]  
-            }
-            else if (j > 1 && i == 0)
-            {
-                Matrix[i,j] = array[i,j-1]*array2[i,j] + array[i,j]*array2[i+1,j];
-                // Matrix[0,1] = array[0,0]*array2[0,1] + array[0,1]*array2[1,1]  
-            }
-            else if (j == 0 && i > 1)
-            {
-                Matrix[i,j] = array[i,j]*array2[i-1,j] + array[i,j+1]*array2[i,j];
-                // Matrix[1,0] = array[1,0]*array2[0,0] + array[1,1]*array2[1,0]
-            }
-            else if (j > 1 && i > 1)
-            {
-                Matrix[i,j] = array[i,j-1]*array2[i-1,j] + array[i,j]*array2[i,j];
-                // Matrix[1,1] = array[1,0]*array2[0,1] + array[1,1]*array2[1,1]
+                for (int k = 0; k < array.GetLength(0); k++)
+                {
+                    Matrix[i, j] += array[i, k] * array2[k, j];
+                }
             }
         }
-    }
     return Matrix;
 }
 
 
-// Matrix[0,0] = array[0,0]*array2[0,0] + array[0,1]*array2[1,0]
-// Matrix[0,1] = array[0,0]*array2[0,1] + array[0,1]*array2[1,1]
-
-// Matrix[1,0] = array[1,0]*array2[0,0] + array[1,1]*array2[1,0]
-// Matrix[1,1] = array[1,0]*array2[0,1] + array[1,1]*array2[1,1]
 
 
 Console.Clear();
