@@ -22,5 +22,5 @@ def print_operation_table(operation, num_rows=6, num_columns=6):
 
 for i in print_operation_table(lambda x, y: x * y):
     for j in i:
-        print(j, end = ' ')
+        print(j, end = '  ')
     print()
